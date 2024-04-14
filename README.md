@@ -28,7 +28,7 @@ Streaming to the frontend was not very feasible, although we spent extensive hou
 # Built with 
 
 - **Frontend**: React, HTML/CSS, JavaScript
-- **Firmware**: OpenBCI, Brainflow
+- **Hardware**: OpenBCI, Brainflow
 - **Backend**: Flask, Gemini API, LangChain (for Retrieval-augmented generation), Stable Diffusion API
 - **Machine learning**: PyTorch, NumPy, Pandas
 
