@@ -1,0 +1,8 @@
+.startbutton {
+    background-image: url('../Assets/startbutton.png'); /* Adjust the path as needed */
+    width: 300px; /* Adjust based on your image's size */
+    height: 200px; /* Adjust based on your image's size */
+    border: none;
+    cursor: pointer;
+  }
+  

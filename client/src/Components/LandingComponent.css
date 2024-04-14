@@ -1,0 +1,42 @@
+.video-container {
+    position: relative;
+    width: 100%; /* Full width */
+    height: 100vh; /* Full viewport height */
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the video covers the full area without stretching */
+}
+
+.about-section {
+    position: absolute;
+    top: 220px;
+    right: 0;
+    background-color: rgba(130, 225, 190, 0.8); /* Semi-transparent white background */
+    padding: 50px;
+    width: 320px; /* Adjust width as needed */
+    height: 190px; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border-radius: 30px; /* Optional: rounded corners */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Optional: add shadow for better visibility */
+}
+
+.about-section h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.about-section h2,
+.about-section h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.about-section video {
+    width: 350px; /* Makes the video responsive within the container */
+    height: auto; /* Maintains aspect ratio */
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px; 
+    max-width: 100%; /* Ensures the video does not overflow its container */
+}

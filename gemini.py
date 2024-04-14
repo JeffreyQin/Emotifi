@@ -15,22 +15,23 @@ vision_model = genai.GenerativeModel('gemini-pro-vision')
 audio_model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
 
 """ ANALYSIS """
-
 def get_analysis(mood, img_path):
-
     img = Image.open(img_path)
-    prompt = f"""You are a professional art therapist and you are analyzing an abstract artwork based on a person with ADHD. 
-    Their current mood is {mood}. The artwork was created based on the mood they are feeling. 
-    Tell us your artistic interpretation of the art and how the person with ADHD might be feeling at the psychological level."
+    prompt = f"""
+    You are a professional art therapist analyzing an abstract artwork based on a person with ADHD.
+    The person is currently feeling {mood}, and the artwork was created based on the mood they are feeling.
+    
+    Tell us your interpretation of the art, with a major focus on how the colors, tones, and other artistic techniques used reflect or relate to the mood that the person is feeling.
+    Provide your interpretation in one single paragraph, DO NOT start any new lines.
     """
+    
 
     response = vision_model.generate_content([prompt, img], stream=False)
-    return response.text
-    """
-    for chunk in vision_model.generate_content([prompt, img], stream=True):
-        print(chunk.text)
-        yield chunk.text
-    """
+    response = response.text
+    
+    print(response)
+    
+    return response
 
 def get_music(mood):
 
