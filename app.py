@@ -4,7 +4,7 @@ from brainflow.board_shim import BoardShim, BrainFlowInputParams, LogLevels, Boa
 
 import subprocess
 import os, sys, dotenv
-import uuid
+import uuid, base64
 
 from eeg_analyzer import infer
 
@@ -30,30 +30,32 @@ r"/infer-mood-brainwave": {"origins": "http://localhost:3000", "methods": ["POST
 
 
 
-@app.route('/infer-mood-brainwave', methods=['GET'])
-@cross_origin(origins="http://localhost:3000", methods=["GET"])
+@app.route('/infer-mood-brainwave', methods=['POST'])
+@cross_origin(origins="http://localhost:3000", methods=["POST"])
 def infer_mood_brainwave():
-    # assert(request.files['eeg'].filename.endswith('.csv'))
+    assert(request.files['eeg'].filename.endswith('.csv'))
     
     eeg_input_csv_path = 'eeg.csv'
     
-    # request.files['eeg'].save(eeg_input_csv_path)
+    request.files['eeg'].save(eeg_input_csv_path)
 
-    return {
-        'result': 'stressed'
-    }
-    """
     mood_result = eeg_analyzer.infer(eeg_input_csv_path)
     return {
         'result': mood_result
     }
-    """
 
-@app.route('/infer-mood-audio', methods=['GET'])
+
+@app.route('/infer-mood-audio', methods=['POST'])
 @cross_origin()
 def infer_mood_audio():
 
+    audio_blob = request.form.get('audio')
+
+    audio_bytes = base64.b64decode(audio_blob)
+
     mp3_input_path = 'audio.mp3'
+    with open(mp3_input_path, 'wb') as audio_file:
+        audio_file.write(audio_bytes)
 
     mood_result = gemini.get_mood_from_audio(mp3_input_path)
 
@@ -67,7 +69,7 @@ def infer_mood_audio():
 def get_art():
 
     mood = request.args.get('mood')
-    print(mood)
+
     if mood == 'relaxed':
         mood_description = 'relaxation and peace'
     elif mood == 'stressed':
@@ -85,10 +87,10 @@ def get_art():
                 'brainwave-art': url_for('serve_image', filename=art_output_png_path),
             })
 
+
 @app.route('/get-music', methods=['GET'])
 @cross_origin()
 def get_music():
-
 
     music_output_midi_path = 'music-downloads/music.mid'
 
@@ -110,7 +112,7 @@ def get_music():
     create_audio.create_midi(notes, music_output_midi_path)
 
     return {
-        "result": "completed"
+        "result": music_output_midi_path
     }
 
 
@@ -134,8 +136,7 @@ def get_advice():
     return {
         "result": gemini_RAG.get_advice(mood_description)
     }
-    # return Response(gemini_RAG.get_advice(mood_description), content_type='text/event-stream')
-
+   
 
 @app.route('/analyze-image', methods=['GET'])
 @cross_origin()
@@ -154,12 +155,6 @@ def analyze_image():
             'result': gemini.get_analysis(mood, analysis_input_png_path)
         }
 
-
-@app.route('/infer-mood-hardcoded', methods=['POST'])
-@cross_origin()
-def infer_mood_direct():
-    mood_result = "relaxed"
-    return jsonify({'result': mood_result})
 
 
 @app.route('/images/<filename>')

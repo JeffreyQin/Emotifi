@@ -63,8 +63,14 @@ const AudioRecorder = ({ setMood, mood }) => {
             const audioUrl = URL.createObjectURL(audioBlob)
             setAudio(audioUrl);
             setAudioChunks([])
+
+            form_data = new FormData()
+            form_data.append('audio', audioBlob)
  
-            const response = await fetch('http://localhost:5001/infer-mood-audio')
+            const response = await fetch('http://localhost:5001/infer-mood-audio', {
+                method: 'POST',
+                body: form_data
+            })
             const data = await response.json()
             setInferred(true)
             setMood(data['result'])
