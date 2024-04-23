@@ -1,5 +1,15 @@
 # Introducing Emotifi
 
+<img width="904" alt="1" src="https://github.com/JeffreyQin/Emotifi/assets/122770444/5f3f2411-060d-44cb-9974-50772d41df26">
+
+
+<img width="884" alt="2" src="https://github.com/JeffreyQin/Emotifi/assets/122770444/ea022641-ddb1-4737-bc26-8d7b410c1fe6">
+
+
+<img width="856" alt="3" src="https://github.com/JeffreyQin/Emotifi/assets/122770444/38eb1e45-348f-4a41-b3fd-285641c679c3">
+
+<img width="860" alt="4" src="https://github.com/JeffreyQin/Emotifi/assets/122770444/59fa4c03-d75c-4a6d-b237-df576b3f8d1a">
+
 ## Inspiration :red_circle:
 ADHD affects more than 8 million individuals worldwide. FMRI studies have shown that most adults with ADHD don’t know how to express feelings. However, as people with ADHD tend to excel in thinking outside the box, art therapy has proven to create natural moments to express thoughts and feelings in an environment that is often less threatening than talk therapy. 
 
